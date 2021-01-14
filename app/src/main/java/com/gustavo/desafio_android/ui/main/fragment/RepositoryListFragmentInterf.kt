@@ -4,5 +4,5 @@ import com.gustavo.desafio_android.model.Repositories
 
 interface RepositoryListFragmentInterf {
 
-    fun updateAdapter(repositories: Repositories)
+//    fun updateAdapter(repositories: Repositories)
 }

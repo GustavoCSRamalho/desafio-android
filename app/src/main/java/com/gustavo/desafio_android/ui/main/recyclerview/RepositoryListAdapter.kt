@@ -2,43 +2,41 @@ package com.gustavo.desafio_android.ui.main.recyclerview
 
 import android.util.Log
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
+import androidx.paging.PagingDataAdapter
+import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.gustavo.desafio_android.databinding.RepositoryBinding
 import com.gustavo.desafio_android.model.Repositories
 import com.gustavo.desafio_android.model.Repository
 
-public class RepositoryListAdapter : RecyclerView.Adapter<RepositoryListAdapter.MovieViewHolder>() {
+class RepositoryListAdapter : PagingDataAdapter<Repository, RepositoryListAdapter.RepositoryListViewHolder>(RepositoryListComparator) {
 
-    private var repositoryList = arrayListOf<Repository>()
-
-    fun add(repository: Repository){
-        repositoryList.add(repository)
-        notifyDataSetChanged()
-    }
-
-    fun addAll(repositories: Repositories){
-        repositoryList.addAll(repositories.itens)
-        notifyDataSetChanged()
-    }
-
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MovieViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RepositoryListViewHolder {
         var layoutInflater = LayoutInflater.from(parent.context)
         var repositoryListBinding = RepositoryBinding.inflate(layoutInflater, parent, false)
-        return MovieViewHolder(repositoryListBinding)
+        return RepositoryListViewHolder(repositoryListBinding)
     }
 
-    override fun onBindViewHolder(holder: MovieViewHolder, position: Int) {
-        val repository = repositoryList[position]
+    override fun onBindViewHolder(holder: RepositoryListViewHolder, position: Int) {
+        val repository = getItem(position)!!
         holder.bind(repository)
     }
 
-    override fun getItemCount() = repositoryList.size
 
+object RepositoryListComparator : DiffUtil.ItemCallback<Repository>() {
+    override fun areItemsTheSame(oldItem: Repository, newItem: Repository): Boolean {
+        return oldItem.id == newItem.id
+    }
 
-    class MovieViewHolder(var repositoryBindingRef: RepositoryBinding) : RecyclerView.ViewHolder(repositoryBindingRef.root) {
+    override fun areContentsTheSame(oldItem: Repository, newItem: Repository): Boolean {
+        return oldItem == newItem
+    }
+
+}
+
+    class RepositoryListViewHolder(var repositoryBindingRef: RepositoryBinding) : RecyclerView.ViewHolder(repositoryBindingRef.root) {
 
         fun bind(repository: Repository) {
             repositoryBindingRef.repository = repository
@@ -47,12 +45,7 @@ public class RepositoryListAdapter : RecyclerView.Adapter<RepositoryListAdapter.
                 .load(repository.user.url)
                 .circleCrop()
                 .into(repositoryBindingRef.repositoryUserImage)
-//            repositoryBindingRef.repositoryName.text = repository.name
-            Log.i("Name",repository.name)
         }
-
-        private var repositoryListBinding = repositoryBindingRef
-
     }
 }
 
