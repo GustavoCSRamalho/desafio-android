@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+    <data>
+<!--        <import type="com.gustavo.desafio_android.model.Repository"/>-->
+        <variable
+            name="repository"
+            type="com.gustavo.desafio_android.model.Repository" />
+    </data>
+
+<androidx.constraintlayout.widget.ConstraintLayout
+    android:layout_width="match_parent"
+    android:layout_height="120dp">
+
+
+    <TextView
+        android:id="@+id/repository_name"
+        android:layout_width="150dp"
+        android:layout_height="20dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="16dp"
+        android:text="@{repository.name}"
+        android:textColor="#BE0D566C"
+
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="Nome do repositorio" />
+
+    <TextView
+        android:id="@+id/repository_description"
+        android:layout_width="260dp"
+        android:layout_height="35dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:text="@{repository.description}"
+        android:textSize="12sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/repository_name"
+        tools:text="Descrição do repositorio lorem ipsun dolor sit amet lorem ipsum dolor..." />
+
+    <ImageView
+        android:id="@+id/repository_fork_image"
+        android:layout_width="16dp"
+        android:layout_height="16dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="32dp"
+        app:layout_constraintBottom_toTopOf="@+id/divider"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/repository_description"
+        app:layout_constraintVertical_bias="0.0"
+        app:srcCompat="@drawable/ic_action_fork" />
+
+    <TextView
+        android:id="@+id/repository_fork_count"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="2dp"
+        android:layout_marginLeft="2dp"
+        android:textColor="#E59700"
+        android:text="@{repository.forkCount}"
+        app:layout_constraintBottom_toBottomOf="@+id/repository_fork_image"
+        app:layout_constraintStart_toEndOf="@+id/repository_fork_image"
+        app:layout_constraintTop_toTopOf="@+id/repository_fork_image"
+        tools:text="640" />
+
+    <ImageView
+        android:id="@+id/repository_star_image"
+        android:layout_width="16dp"
+        android:layout_height="16dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        app:layout_constraintBottom_toBottomOf="@+id/repository_fork_image"
+        app:layout_constraintStart_toEndOf="@+id/repository_fork_count"
+        app:layout_constraintTop_toTopOf="@+id/repository_fork_image"
+        app:layout_constraintVertical_bias="0.0"
+        app:srcCompat="@drawable/ic_action_star"
+        tools:ignore="VectorDrawableCompat" />
+
+    <TextView
+        android:id="@+id/repository_star_count"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="2dp"
+        android:layout_marginLeft="2dp"
+        android:textColor="#E59700"
+        tools:text="640"
+        android:text = "@{repository.startCount}"
+        app:layout_constraintBottom_toBottomOf="@+id/repository_star_image"
+        app:layout_constraintStart_toEndOf="@+id/repository_star_image"
+        app:layout_constraintTop_toTopOf="@+id/repository_star_image" />
+
+    <ImageView
+        android:id="@+id/repository_user_image"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginEnd="34dp"
+        android:layout_marginRight="34dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/repository_name"
+        tools:srcCompat="@tools:sample/avatars" />
+
+    <TextView
+        android:id="@+id/repository_username"
+        android:layout_width="60dp"
+        android:layout_height="15dp"
+        android:layout_marginTop="8dp"
+        android:text="@{repository.fullName}"
+        android:textColor="#3C6F7F"
+        android:textAlignment="center"
+        android:textSize="12sp"
+        app:layout_constraintEnd_toEndOf="@+id/repository_user_image"
+        app:layout_constraintStart_toStartOf="@+id/repository_user_image"
+        app:layout_constraintTop_toBottomOf="@+id/repository_user_image"
+        tools:text="username"
+        android:gravity="center_horizontal" />
+
+    <TextView
+        android:id="@+id/repository_user_name"
+        android:layout_width="100dp"
+        android:layout_height="15dp"
+        android:layout_marginTop="4dp"
+        android:text="@{repository.user.userName}"
+        android:textAlignment="center"
+        android:textSize="12sp"
+        app:layout_constraintEnd_toEndOf="@+id/repository_username"
+        app:layout_constraintStart_toStartOf="@+id/repository_username"
+        app:layout_constraintTop_toBottomOf="@+id/repository_username"
+        tools:text="Nome Sobrenome"
+        android:gravity="center_horizontal" />
+
+    <View
+        android:id="@+id/divider"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginEnd="20dp"
+
+        android:layout_marginRight="20dp"
+        android:background="?android:attr/listDivider"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent" />
+</androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
