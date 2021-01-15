@@ -3,6 +3,7 @@ package com.gustavo.desafio_android.ui.main.recyclerview.repository.viewholder
 import android.annotation.SuppressLint
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.gustavo.desafio_android.R
 import com.gustavo.desafio_android.databinding.RepositoryBinding
 import com.gustavo.desafio_android.model.Repository
@@ -17,6 +18,7 @@ class RepositoryListViewHolder(
 
         Glide.with(repositoryBindingRef.root)
             .load(repository.user.url)
+            .diskCacheStrategy(DiskCacheStrategy.ALL)
             .circleCrop()
             .into(repositoryBindingRef.repositoryUserImage)
 
