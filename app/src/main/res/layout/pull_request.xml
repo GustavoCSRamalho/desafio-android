@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+    <data>
+<!--        <import type="com.gustavo.desafio_android.model.Repository"/>-->
+        <variable
+            name="pullRequest"
+            type="com.gustavo.desafio_android.model.PullRequest" />
+        <variable
+            name="repositoryViewModel"
+            type="com.gustavo.desafio_android.ui.main.fragment.RepositoryListFragment" />
+    </data>
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="130dp">
+
+
+        <TextView
+
+            android:id="@+id/pull_request_name"
+            android:layout_width="150dp"
+            android:layout_height="20dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="16dp"
+            android:text="@{pullRequest.title}"
+            android:textColor="#BE0D566C"
+
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="Nome do repositorio" />
+
+        <TextView
+            android:id="@+id/pull_request_description"
+            android:layout_width="260dp"
+            android:layout_height="35dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginLeft="16dp"
+            android:text="@{pullRequest.body}"
+            android:textSize="12sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/pull_request_name"
+            tools:text="Descrição do repositorio lorem ipsun dolor sit amet lorem ipsum dolor..." />
+
+
+        <ImageView
+            android:id="@+id/pull_request_user_image"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            app:layout_constraintStart_toStartOf="@+id/pull_request_description"
+            app:layout_constraintTop_toBottomOf="@+id/pull_request_description"
+            tools:srcCompat="@tools:sample/avatars" />
+
+        <TextView
+            android:id="@+id/pull_request_username"
+            android:layout_width="60dp"
+            android:layout_height="15dp"
+            android:gravity="center_horizontal"
+            android:text="@{pullRequest.head.user.userName}"
+            android:textAlignment="center"
+            android:textColor="#3C6F7F"
+            android:textSize="12sp"
+            android:layout_marginStart="8dp"
+            app:layout_constraintStart_toEndOf="@+id/pull_request_user_image"
+            app:layout_constraintTop_toTopOf="@+id/pull_request_user_image"
+            tools:text="username"
+            android:layout_marginLeft="8dp" />
+
+        <TextView
+            android:id="@+id/pull_request_user_name"
+            android:layout_width="100dp"
+            android:layout_height="15dp"
+            android:layout_marginTop="4dp"
+            android:gravity="center_horizontal"
+            android:text="@{pullRequest.fullName}"
+            android:textAlignment="center"
+            android:textSize="12sp"
+            app:layout_constraintBottom_toBottomOf="@+id/pull_request_user_image"
+            app:layout_constraintStart_toStartOf="@+id/pull_request_username"
+            app:layout_constraintTop_toBottomOf="@+id/pull_request_username"
+            tools:text="Nome Sobrenome" />
+
+        <View
+            android:id="@+id/divider"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginEnd="20dp"
+
+            android:layout_marginRight="20dp"
+            android:background="?android:attr/listDivider"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

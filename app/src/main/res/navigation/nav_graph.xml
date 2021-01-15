@@ -3,11 +3,22 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/mainFragment">
+    app:startDestination="@id/repositoryListFragment">
 
     <fragment
-        android:id="@+id/mainFragment"
+        android:id="@+id/repositoryListFragment"
         android:name="com.gustavo.desafio_android.ui.main.fragment.RepositoryListFragment"
-        android:label="main_fragment"
-        tools:layout="@layout/repository_list" />
+        android:label="main_fragment">
+        <action
+            android:id="@+id/action_mainFragment_to_pullRequestListFragment"
+            app:destination="@id/pullRequestListFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/pullRequestListFragment"
+        android:name="com.gustavo.desafio_android.ui.main.fragment.PullRequestListFragment"
+        android:label="PullRequestListFragment" >
+        <argument
+            android:name="repository"
+            app:argType="com.gustavo.desafio_android.model.Repository" />
+    </fragment>
 </navigation>
