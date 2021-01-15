@@ -3,6 +3,7 @@ package com.gustavo.desafio_android.ui.main.recyclerview.pullrequest.viewholder
 import android.annotation.SuppressLint
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.gustavo.desafio_android.databinding.PullRequestBinding
 import com.gustavo.desafio_android.model.PullRequest
 import com.gustavo.desafio_android.ui.main.activity.interf.OpenUrlInterf
@@ -18,6 +19,7 @@ class PullRequestListViewHolder(
 
         Glide.with(pullRequestBindingRef.root)
             .load(pullRequest.head.user.url)
+            .diskCacheStrategy(DiskCacheStrategy.ALL)
             .circleCrop()
             .into(pullRequestBindingRef.pullRequestUserImage)
 
